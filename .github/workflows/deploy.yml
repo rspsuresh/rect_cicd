@@ -1,12 +1,10 @@
 name: React CI/CD Deployment
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
-
-permissions:
-  contents: write
 
 jobs:
   build-deploy:
@@ -27,6 +25,10 @@ jobs:
       # Install dependencies
       - name: Install dependencies
         run: npm ci
+
+      # Build the project
+      - name: Build project 
+        run: npm run build
 
       # Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
